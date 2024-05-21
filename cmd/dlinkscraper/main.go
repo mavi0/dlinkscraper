@@ -104,6 +104,11 @@ var (
 					writeAPI.Flush()
 					client.Close()
 
+					// if interval set to over 20 secs allow it to loop forever - hard low limit of 20 secs
+					if viper.GetDuration("interval") < (20 * time.Second) {
+						logrus.WithField("sleep interval", viper.GetDuration("interval")).Infoln("Data written to InfluxDB. Interval less than 20 secs, exiting.")
+						break
+					}
 					logrus.WithField("sleep interval", viper.GetDuration("interval")).Infoln("Data written to InfluxDB. Sleeping...")
 					time.Sleep(viper.GetDuration("interval"))
 				}
@@ -130,7 +135,7 @@ func init() {
 	rootCmd.PersistentFlags().StringP("password", "p", "password", "password for the dlink router")
 	viper.BindPFlag("password", rootCmd.PersistentFlags().Lookup("password"))
 
-	rootCmd.PersistentFlags().DurationP("interval", "i", 20*time.Second, "time between each poll")
+	rootCmd.PersistentFlags().DurationP("interval", "i", 0, "time between each poll")
 	viper.BindPFlag("interval", rootCmd.PersistentFlags().Lookup("interval"))
 
 	rootCmd.PersistentFlags().StringP("hostname", "n", "hostname", "hostname of the system")
