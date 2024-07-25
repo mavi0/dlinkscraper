@@ -32,7 +32,7 @@ var (
 				// curl the telnet-enable page on the router
 				response, err := http.Get("http://" + viper.GetString("address") + ":8000/atsq.txt")
 				if err != nil {
-					logrus.WithError(err).Fatalln("error connecting to router telnet page")
+					logrus.WithError(err).Errorln("error connecting to router telnet page")
 				} else {
 					logrus.WithField("code", response).Infoln("Tenlet enable response code")
 				}
