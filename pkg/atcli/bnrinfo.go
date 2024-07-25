@@ -69,6 +69,7 @@ func BNRInfo(router *router.Router) (*BNRInfoResult, error) {
 	} else {
 		logrus.WithField("dlBandwidth", dlBandwidth).Infoln("found dlBandwidth info")
 	}
+	result.DLBandwidthMHz = dlBandwidth
 
 	// physical cell ID
 	phy, err := getATCLIValue(output, "physical cell ID", 0)
