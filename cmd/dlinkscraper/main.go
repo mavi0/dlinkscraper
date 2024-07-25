@@ -153,7 +153,7 @@ func init() {
 	rootCmd.PersistentFlags().StringP("influx_bucket", "b", "bucket", "bucket on influxdb server to utilise")
 	viper.BindPFlag("influx_bucket", rootCmd.PersistentFlags().Lookup("influx_bucket"))
 
-	viper.AutomaticEnv()
+	// viper.AutomaticEnv()
 	viper.SetConfigName("config")
 	viper.SetConfigType("json")
 	viper.AddConfigPath(".")
