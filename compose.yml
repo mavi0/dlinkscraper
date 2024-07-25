@@ -1,0 +1,10 @@
+name: dlinkscraper
+
+services:
+  dlinkscraper:
+    image: ghcr.io/mavi0/dlinkscraper:latest
+    container_name: dlinkscraper
+    restart: unless-stopped
+    volumes:
+      - "config.json:/etc/dlinkscraper/:ro"
+    
