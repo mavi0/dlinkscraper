@@ -4,7 +4,6 @@ import (
 	"fmt"
 
 	"github.com/sirupsen/logrus"
-	)
 )
 
 func (r *Router) Login(username, password string) error {
