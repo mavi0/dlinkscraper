@@ -1,6 +1,6 @@
 module github.com/mavi0/dlinkscraper
 
-go 1.22.2
+go 1.23
 
 require github.com/spf13/viper v1.18.2
 
